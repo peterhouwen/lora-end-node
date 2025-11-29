@@ -1,0 +1,11 @@
+menu "Example Configuration"
+
+    config PAUSE
+        int "Pause time in ms"
+        range 1000 10000
+        default 2000
+        help
+            Define the pause time in milliseconds.
+
+endmenu
+        

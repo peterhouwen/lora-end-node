@@ -598,7 +598,7 @@ CONFIG_PARTITION_TABLE_MD5=y
 #
 # Example Configuration
 #
-CONFIG_PAUSE=5000
+CONFIG_PAUSE=2000
 # end of Example Configuration
 
 #
