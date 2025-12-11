@@ -1,3 +1,33 @@
+# Building the component
+
+## Research
+
+The so called concentrator is what I need to focus on.
+
+file lorahub_hal
+
+    lgw_start
+
+    lgw_stop
+
+file pkt_fwd.c
+
+    1638 THREAD 4: INITIALIZE AND RUN PACKET FORWARDER
+
+    1691 Configure radio parameters
+
+Goal: print temperature.
+
+## pthread
+
+[User guide / API Reference / POSIX Support](https://documentation.espressif.com/projects/esp-idf/en/latest/esp32s3/api-reference/system/pthread.html)
+
+[FreeRTOS-Plus-POSIX pthread.h](https://www.freertos.org/Documentation/03-Libraries/05-FreeRTOS-labs/03-FreeRTOS-plus-POSIX/01-API-Reference/04-pthread)
+
+[Thread Management Functions in C](https://www.geeksforgeeks.org/c/thread-functions-in-c-c/)
+
+Original content:
+
 | Supported Targets | ESP32 | ESP32-C2 | ESP32-C3 | ESP32-C5 | ESP32-C6 | ESP32-C61 | ESP32-H2 | ESP32-H21 | ESP32-H4 | ESP32-P4 | ESP32-S2 | ESP32-S3 | Linux |
 | ----------------- | ----- | -------- | -------- | -------- | -------- | --------- | -------- | --------- | -------- | -------- | -------- | -------- | ----- |
 
