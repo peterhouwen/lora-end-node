@@ -27,6 +27,27 @@ static const char *TAG = "example";
 /* Services */
 #include "radio.h"
 
+/* -------------------------------------------------------------------------- */
+/* --- PRIVATE FUNCTIONS DEFINITION ----------------------------------------- */
+
+// void wait_on_error( lorahub_error_t error, int line )
+// {
+//     /* Send error code to display (if available) */
+//     display_error_t err = { .err = error, .line = line };
+//     display_update_error( &err );
+
+//     /* loop and blink LED for 10 seconds */
+//     bool led_status = true;
+//     for( int i = 0; i < 10; i++ )
+//     {
+//         led_status = !led_status;
+//         set_user_led( led_status );
+//         vTaskDelay( 1000 / portTICK_PERIOD_MS );
+//     };
+
+//     /* Reset the ESP32 */
+//     esp_restart( );
+// }
 
 
 
@@ -46,16 +67,16 @@ void app_main(void)
     ESP_ERROR_CHECK( temperature_sensor_enable( temp_sensor ) );
 
     /* Start Radio */
-    // launch_radio( temp_sensor );
+    launch_radio( temp_sensor );
 
-    ESP_LOGI(TAG, "Read temperature");
-    float tsens_out;
+    // ESP_LOGI(TAG, "Read temperature");
+    // float tsens_out;
     while (1)
     {
-        ESP_ERROR_CHECK(temperature_sensor_get_celsius(temp_sensor, &tsens_out));
+        // ESP_ERROR_CHECK(temperature_sensor_get_celsius(temp_sensor, &tsens_out));
 
-        // printf("Hello world!\n");
-        ESP_LOGI(TAG, "Temperature value %.02f °C", tsens_out);
+        printf("Hello world!\n");
+        // ESP_LOGI(TAG, "Temperature value %.02f °C", tsens_out);
 
         vTaskDelay(CONFIG_PAUSE / portTICK_PERIOD_MS);
     }
