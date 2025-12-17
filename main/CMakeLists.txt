@@ -1,6 +1,10 @@
-set(radio "radio.c" "hello_world_main.c")
+set(radio "src/radio.c" "src/hello_world_main.c")
 
-idf_component_register(SRCS "${radio}"
-                       PRIV_REQUIRES "spi_flash" "esp_driver_tsens"
-                       INCLUDE_DIRS "")
+idf_component_register(
+    SRCS "${radio}"
+    PRIV_INCLUDE_DIRS "include"
+    PRIV_REQUIRES "spi_flash" "esp_driver_tsens"
+    INCLUDE_DIRS "."
+    REQUIRES driver
+)
 

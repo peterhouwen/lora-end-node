@@ -15,6 +15,7 @@
 #include "sdkconfig.h"
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
+#include "driver/gpio.h"
 #include "esp_log.h"
 #include "esp_chip_info.h"
 #include "esp_flash.h"
@@ -24,8 +25,17 @@
 
 static const char *TAG = "example";
 
+// #define USER_LED_GPIO 35 /* User LED */
+
 /* Services */
 #include "radio.h"
+#include "hw_board_defs.h"
+
+/* -------------------------------------------------------------------------- */
+/* --- PRIVATE FUNCTIONS DECLARATION ---------------------------------------- */
+
+static void configure_user_led( void );
+static void set_user_led( bool on );
 
 /* -------------------------------------------------------------------------- */
 /* --- PRIVATE FUNCTIONS DEFINITION ----------------------------------------- */
@@ -49,7 +59,27 @@ static const char *TAG = "example";
 //     esp_restart( );
 // }
 
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
+static void configure_user_led( void )
+{
+#ifdef USER_LED_GPIO
+    gpio_reset_pin( USER_LED_GPIO );
+    gpio_set_direction( USER_LED_GPIO, GPIO_MODE_OUTPUT );
+    gpio_set_level( USER_LED_GPIO, 0 );
+#endif
+}
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+static void set_user_led( bool on )
+{
+#ifdef USER_LED_GPIO
+    gpio_set_level( USER_LED_GPIO, ( on == true ) ? 1 : 0 );
+#endif
+}
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
 void app_main(void)
 {
@@ -58,6 +88,10 @@ void app_main(void)
     // int                         i; /* loop variable and temporary variable for return value */
     // esp_err_t                   esp_err;
     temperature_sensor_handle_t temp_sensor = NULL;
+
+    /* configure LED */
+    configure_user_led( );
+
 
     /* Initialize temperature sensor (before running the pkt fwd thread) */
     temperature_sensor_config_t temp_sensor_config = TEMPERATURE_SENSOR_CONFIG_DEFAULT( 10, 50 );
@@ -71,12 +105,17 @@ void app_main(void)
 
     // ESP_LOGI(TAG, "Read temperature");
     // float tsens_out;
+
+    bool led_status = true;
+
     while (1)
     {
         // ESP_ERROR_CHECK(temperature_sensor_get_celsius(temp_sensor, &tsens_out));
 
         printf("Hello world!\n");
         // ESP_LOGI(TAG, "Temperature value %.02f °C", tsens_out);
+        led_status = !led_status;
+        set_user_led( led_status );
 
         vTaskDelay(CONFIG_PAUSE / portTICK_PERIOD_MS);
     }

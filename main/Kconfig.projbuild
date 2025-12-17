@@ -1,3 +1,26 @@
+menu "Radio config"
+
+menu "Hardware Configuration"
+
+    choice GATEWAY_HW_BOARD
+        prompt "Board type"
+        default HELTEC_WIFI_LORA_32_V3
+        help
+            Select the hardware board on which the LoraHub is run (Semtech DevKit, Heltec WiFi LoRa 32 v3, ...).
+        config HELTEC_WIFI_LORA_32_V3
+            bool "Heltec WiFi LoRa 32 v3"
+            help
+                Select Heltec WiFi LoRa 32 v3.
+        config SEEED_XIAO_ESP32S3_DEVKIT
+            bool "Seeed Xiao ESP32S3"
+            help
+                Select Seeed Xiao ESP32S3.
+
+    endchoice
+
+endmenu # Hardware Configuration
+
+
 menu "Example Configuration"
 
     config PAUSE
@@ -7,5 +30,6 @@ menu "Example Configuration"
         help
             Define the pause time in milliseconds.
 
-endmenu
+endmenu # Example Configuration
         
+endmenu # Radio config
