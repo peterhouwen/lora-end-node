@@ -60,7 +60,7 @@ void thread_radio( void )
     while (1)
     {
         /* wait for next reporting interval */
-        vTaskDelay( 1000 / portTICK_PERIOD_MS );
+        vTaskDelay( 10000 / portTICK_PERIOD_MS );
         
         tsens_out = 0;
         if( temp_sensor != NULL )

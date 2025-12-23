@@ -28,6 +28,7 @@ static const char *TAG = "example";
 // #define USER_LED_GPIO 35 /* User LED */
 
 /* Services */
+#include "heartbeat.h"
 #include "radio.h"
 #include "hw_board_defs.h"
 
@@ -90,7 +91,7 @@ void app_main(void)
     temperature_sensor_handle_t temp_sensor = NULL;
 
     /* configure LED */
-    configure_user_led( );
+    // configure_user_led( );
 
 
     /* Initialize temperature sensor (before running the pkt fwd thread) */
@@ -99,6 +100,10 @@ void app_main(void)
 
     ESP_LOGI(TAG, "Enable temperature sensor");
     ESP_ERROR_CHECK( temperature_sensor_enable( temp_sensor ) );
+
+
+    /* Start Heartbeat */
+    launch_heartbeat( );
 
     /* Start Radio */
     launch_radio( temp_sensor );
@@ -112,10 +117,10 @@ void app_main(void)
     {
         // ESP_ERROR_CHECK(temperature_sensor_get_celsius(temp_sensor, &tsens_out));
 
-        printf("Hello world!\n");
+        // printf("Hello world!\n");
         // ESP_LOGI(TAG, "Temperature value %.02f °C", tsens_out);
-        led_status = !led_status;
-        set_user_led( led_status );
+        // led_status = !led_status;
+        // set_user_led( led_status );
 
         vTaskDelay(CONFIG_PAUSE / portTICK_PERIOD_MS);
     }

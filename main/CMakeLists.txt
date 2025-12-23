@@ -1,4 +1,4 @@
-set(radio "src/radio.c" "src/hello_world_main.c")
+set(radio "src/heartbeat.c" "src/radio.c" "src/hello_world_main.c")
 
 idf_component_register(
     SRCS "${radio}"
