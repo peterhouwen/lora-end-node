@@ -158,7 +158,7 @@ void thread_heartbeat( void )
         #endif
 
 
-        printf("heartbeat pulse\n");
+        // printf("heartbeat pulse\n");
 
 
     }

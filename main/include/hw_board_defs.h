@@ -22,6 +22,7 @@ Description:
 
 #if defined( CONFIG_HELTEC_WIFI_LORA_32_V3 )
 #define USER_LED_GPIO 35 /* User LED */
+#define VEXT_CTRL_GPIO 36 /* Vext_Ctrl */
 #elif defined( CONFIG_SEEED_XIAO_ESP32S3_DEVKIT )
 #define USER_LED_GPIO 48            /* User LED from Xiao Wio-sx1262 board */
 #else
