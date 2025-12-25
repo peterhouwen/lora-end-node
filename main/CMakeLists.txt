@@ -1,5 +1,5 @@
 set(radio "src/heartbeat.c" "src/radio.c" "src/hello_world_main.c")
-set(display "src/lvgl_demo_ui.c")
+set(display "src/display.c" "src/lvgl_demo_ui.c")
 
 idf_component_register(
     SRCS "${radio}" "${display}"
